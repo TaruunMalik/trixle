@@ -44,7 +44,6 @@ export default function Sidebar({ isPro }: SidebarProps) {
     }
     return router.push(url);
   };
-  console.log(isPro, "Sidebar ispro");
 
   return (
     <div className=" space-y-4 flex flex-col h-full text-primary bg-background border-r-2 border-r-border ">
