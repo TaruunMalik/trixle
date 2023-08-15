@@ -15,7 +15,11 @@ const font = Lora({
   subsets: ["latin"],
 });
 
-export default function MobileSidebar() {
+interface MobileSidebarProps {
+  isPro: boolean;
+}
+
+export default function MobileSidebar({ isPro }: MobileSidebarProps) {
   return (
     <Sheet>
       <SheetTrigger className=" md:hidden pr-4">
@@ -26,7 +30,7 @@ export default function MobileSidebar() {
         className=" p-0 text-center bg-secondary pt-10 w-32"
       >
         <span className={font.className}>Trixle</span>
-        <Sidebar />
+        <Sidebar isPro={isPro} />
       </SheetContent>
     </Sheet>
   );

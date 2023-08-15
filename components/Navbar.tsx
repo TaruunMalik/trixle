@@ -15,7 +15,7 @@ const font = Lora({
 });
 
 interface NavbarProps {
-  isPro?: boolean;
+  isPro: boolean;
 }
 
 export default function Navbar({ isPro }: NavbarProps) {
@@ -24,7 +24,7 @@ export default function Navbar({ isPro }: NavbarProps) {
   return (
     <div className="fixed h-16 w-full z-100 flex justify-between items-center py-2 px-4 border-b border-primary/10 bg-background">
       <div className=" flex items-center">
-        <MobileSidebar />
+        <MobileSidebar isPro={isPro} />
         <Link href="/">
           <h1
             className={cn(
