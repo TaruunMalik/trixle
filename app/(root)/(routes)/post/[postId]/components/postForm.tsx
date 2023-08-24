@@ -55,7 +55,14 @@ export default function PostForm({ initialData }: PostFormProps) {
   const isLoading = form.formState.isSubmitting;
   const submitHandler = async (values: z.infer<typeof formSchema>) => {
     if (initialData) {
-      console.log(initialData);
+      await axios.patch(`/api/photo/${initialData.id}`, values);
+      toast({
+        variant: "default",
+        title: "Success!",
+        description: "Successfully updated your post!",
+      });
+      router.refresh();
+      router.push("/gallery");
     } else {
       try {
         await axios.post("/api/photo", values);

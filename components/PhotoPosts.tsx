@@ -2,6 +2,8 @@ import React from "react";
 import { Photo } from "@prisma/client";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { EditIcon } from "lucide-react";
+import Link from "next/link";
 interface PhotoPostsProps {
   data: Photo[];
 }
@@ -37,6 +39,9 @@ export default async function PhotoPosts({ data }: PhotoPostsProps) {
                   on - {item.createdAt.toLocaleDateString()}
                 </p>
                 {/* </div> */}
+                <Link href={`/post/${item.id}`}>
+                  <EditIcon />
+                </Link>
               </div>
             </div>
           </div>
