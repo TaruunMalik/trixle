@@ -21,6 +21,20 @@ model Category {
 
 // EPERM: operation not permitted, unlink 'C:\Users\Lenovo\Desktop\trixle\node_modules\.prisma\client\query_engine-windows.dll.node' close an already running app and then re run the command
 
+model Photo {
+  id          String   @id @default(uuid())
+  userId      String
+  userName    String
+  userProfile String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  src         String
+  caption     String   @db.Text
+  description String
+
+  @@fulltext([caption])
+}
+
 model AI {
   id           String @id @default(uuid())
   userId       String

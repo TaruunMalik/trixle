@@ -40,7 +40,7 @@ export default function SearchInput() {
       <Input
         type="text"
         placeholder="Search..."
-        className=" bg-background pl-8 border-2 outline-none focus:ring active:ring z-[-1]"
+        className=" bg-background pl-8 border-2 outline-none focus:ring active:ring"
         onChange={onChange}
         value={value}
       />

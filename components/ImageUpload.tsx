@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { CldUploadButton } from "next-cloudinary";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 interface ImageUploadProps {
   value: string;
   onChange: (src: string) => void;
@@ -22,6 +23,7 @@ export const ImageUpload = ({
   if (!isMounted) {
     return null;
   }
+
   return (
     <div className=" w-full space-y-4 flex flex-col justify-center items-center">
       <CldUploadButton
@@ -45,7 +47,7 @@ export const ImageUpload = ({
             items-center 
             justify-center z-[-1]"
         >
-          <div className=" relative h-40 w-40">
+          <div className=" relative h-56 w-56">
             <Image
               fill
               alt="Uploaded Image"

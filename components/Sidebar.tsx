@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Home, Plus, Settings } from "lucide-react";
+import { Image } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
@@ -24,13 +25,27 @@ export default function Sidebar({ isPro }: SidebarProps) {
     },
     {
       id: 2,
-      icon: Plus,
-      href: "/ai/new",
+      icon: Image,
+      href: "/gallery",
       isprotected: true,
-      label: "Create",
+      label: "Gallery",
     },
     {
       id: 3,
+      icon: Plus,
+      href: "/ai/new",
+      isprotected: true,
+      label: "Create New Bot",
+    },
+    {
+      id: 4,
+      icon: Plus,
+      href: "/post/new",
+      isprotected: true,
+      label: "Create New Post",
+    },
+    {
+      id: 5,
       icon: Settings,
       href: "/settings",
       isprotected: false,
@@ -58,7 +73,7 @@ export default function Sidebar({ isPro }: SidebarProps) {
                 pathname === route.href && "bg-primary/10 text-primary"
               )}
             >
-              <div className=" flex flex-col gap-y-2 items-center flex-1">
+              <div className=" flex flex-col gap-y-2 items-center text-center flex-1">
                 <route.icon className=" h-5 w-5" />
                 {route.label}
               </div>
