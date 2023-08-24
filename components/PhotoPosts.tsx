@@ -11,7 +11,10 @@ export default async function PhotoPosts({ data }: PhotoPostsProps) {
     <div className=" m-7">
       <div className=" grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {data.map((item) => (
-          <div className=" group relative shadow-card rounded-lg w-80 h-64 ">
+          <div
+            key={item.id}
+            className=" group relative shadow-card rounded-lg w-80 h-64 "
+          >
             <Image
               fill
               alt={item.caption}
