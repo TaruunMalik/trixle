@@ -27,7 +27,7 @@ export default function Sidebar({ isPro }: SidebarProps) {
       id: 2,
       icon: Image,
       href: "/gallery",
-      isprotected: true,
+      isprotected: false,
       label: "Gallery",
     },
     {
