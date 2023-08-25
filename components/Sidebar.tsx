@@ -35,14 +35,14 @@ export default function Sidebar({ isPro }: SidebarProps) {
       icon: Plus,
       href: "/ai/new",
       isprotected: true,
-      label: "Create New Bot",
+      label: "Create Bot",
     },
     {
       id: 4,
       icon: Plus,
       href: "/post/new",
       isprotected: true,
-      label: "Create New Post",
+      label: "Create Post",
     },
     {
       id: 5,

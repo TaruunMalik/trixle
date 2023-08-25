@@ -40,7 +40,7 @@ export const GET = async () => {
             currency: "INR",
             product_data: {
               name: "Pro Services",
-              description: "Create Custom AI Bot!",
+              description: "You are paying for premium subscription!",
             },
             unit_amount: 5000,
             recurring: {
