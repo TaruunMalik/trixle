@@ -6,15 +6,15 @@ import { checkSubscription } from "@/lib/subscription";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const isSubscribed = await checkSubscription();
+    // const isSubscribed = await checkSubscription();
     const user = await currentUser();
     const { description, caption, src } = body;
-    if (!isSubscribed) {
-      return new NextResponse("Premium Subscription is Required!", {
-        status: 400,
-        statusText: "Unauthorized",
-      });
-    }
+    // if (!isSubscribed) {
+    //   return new NextResponse("Premium Subscription is Required!", {
+    //     status: 400,
+    //     statusText: "Unauthorized",
+    //   });
+    // }
     if (!user) {
       return new NextResponse("No user found!", { status: 402 });
     }
