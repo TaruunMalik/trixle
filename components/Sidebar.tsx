@@ -41,7 +41,7 @@ export default function Sidebar({ isPro }: SidebarProps) {
       id: 4,
       icon: Plus,
       href: "/post/new",
-      isprotected: true,
+      isprotected: false,
       label: "Create Post",
     },
     {
