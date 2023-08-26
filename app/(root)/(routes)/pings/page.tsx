@@ -15,7 +15,7 @@ export default function Pings() {
   return (
     <div className=" m-7">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-5">
-        See what's trending
+        See what&apos;s trending
       </h1>
       <Dialog>
         <DialogTrigger asChild>
@@ -25,7 +25,8 @@ export default function Pings() {
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when you're done.
+              Make changes to your profile here. Click save when you&apos;re
+              done.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
