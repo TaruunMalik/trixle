@@ -35,7 +35,7 @@ export default function SearchInput() {
   }, [debouncedVal, router, categoryId]);
 
   return (
-    <div className=" relative flex justify-center items-center">
+    <div className=" relative flex justify-center items-center mb-3">
       <Search className=" absolute h-4 w-4 left-2 top-3 text-muted-foreground " />
       <Input
         type="text"

@@ -10,7 +10,7 @@ export async function PATCH(
   try {
     const body = await req.json();
     const user = await currentUser();
-    const isPro = await checkSubscription();
+    // const isPro = await checkSubscription();
     const { description, caption, src } = body;
     if (!description || !caption || !src) {
       return new NextResponse("Any field cannot be empty", { status: 400 });
@@ -27,9 +27,9 @@ export async function PATCH(
         statusText: "Cannot do this!",
       });
     }
-    if (!isPro) {
-      return new NextResponse("Premium subscription required", { status: 400 });
-    }
+    // if (!isPro) {
+    //   return new NextResponse("Premium subscription required", { status: 400 });
+    // }
 
     const updatedPost = await prismadb.photo.update({
       where: {
