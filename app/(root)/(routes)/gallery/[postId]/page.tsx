@@ -19,6 +19,13 @@ export default async function PostPage({ params }: SinglePageProps) {
       createdAt: "desc",
     },
   });
+  const relatedUserPostsData = await prismadb.photo.findMany({
+    where: {
+      // id:post?.id,
+      userId: post?.userId,
+    },
+  });
+
   return (
     <Suspense fallback={<Loading />}>
       {post ? (
@@ -42,6 +49,10 @@ export default async function PostPage({ params }: SinglePageProps) {
               </div>
             </div>
           </div>
+          <PhotoPosts
+            data={relatedUserPostsData}
+            header={`More from ${post.userName}`}
+          />
           <PhotoPosts data={data} header="Related Posts" />
         </>
       ) : (
