@@ -12,16 +12,19 @@ import SearchInput from "./SearchInput";
 interface PhotoPostsProps {
   data: Photo[];
 }
-
+interface GalleryProps {
+  header: string;
+}
+interface CombinedProps extends PhotoPostsProps, GalleryProps {}
 // const downloadImage = async (id, photo) => {};
 
-export default async function PhotoPosts({ data }: PhotoPostsProps) {
+export default async function PhotoPosts({ data, header }: CombinedProps) {
   const user = await currentUser();
   return (
     <>
       <div className=" m-7">
         <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-5">
-          Gallery
+          {header}
         </h1>
         <SearchInput />
         <div className=" posts-container">
@@ -30,7 +33,9 @@ export default async function PhotoPosts({ data }: PhotoPostsProps) {
               key={item.id}
               className=" group relative shadow-card  post-box"
             >
-              <ArrowUpRightFromCircle className=" absolute right-1 top-1 rounded-sm hidden group-hover:flex z-[3] cursor-pointer" />
+              <Link href={`/gallery/${item.id}`}>
+                <ArrowUpRightFromCircle className=" absolute right-1 top-1 rounded-sm hidden group-hover:flex z-[3] cursor-pointer" />
+              </Link>
               <Button className=" p-2 w-1/5 text-foreground hover:text-background bg-red-600 rounded-xl absolute left-1 top-1 group-hover:flex cursor-pointer hidden z-[2] ">
                 Save
               </Button>
