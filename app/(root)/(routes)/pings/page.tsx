@@ -1,4 +1,3 @@
-"use client";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,9 +10,8 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+
 export default function Pings() {
-  const [name, setName] = useState("");
   return (
     <div className=" m-7">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-5">
@@ -37,8 +35,8 @@ export default function Pings() {
               </Label>
               <Input
                 id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value="taruun"
+                // onChange={(e) => setName(e.target.value)}
                 className="col-span-3"
               />
             </div>
