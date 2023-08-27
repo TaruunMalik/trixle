@@ -35,7 +35,7 @@ export default function Sidebar({ isPro }: SidebarProps) {
       id: 3,
       icon: Bird,
       href: "/pings",
-      isprotected: true,
+      isprotected: false,
       label: "What's New",
     },
     {

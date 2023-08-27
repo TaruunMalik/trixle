@@ -45,7 +45,7 @@ export default async function PostPage({ params }: SinglePageProps) {
           <div className="m-7 h-full flex justify-center">
             <div
               className="grid grid-cols-1 lg:grid-cols-2 md:gap-10 shadow-lg
-                  rounded-2xl max-w-6xl singlePost-container overflow-y-auto w-5xl p-4 bg-foreground text-background mb-5 "
+                  rounded-2xl max-w-6xl singlePost-container overflow-y-auto overflow-x-hidden w-5xl p-4 bg-foreground text-background mb-5 "
             >
               <div className=" flex flex-col items-center justify-center">
                 <img
@@ -99,8 +99,8 @@ export default async function PostPage({ params }: SinglePageProps) {
                     </Button>
                   </div>
                   <p className=" italic font-bold text-lg text-center">{`"${post.caption}"`}</p>
-                  <div className=" flex bg-muted/10 flex-col p-3 text-center rounded-lg">
-                    <h3 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl mb-2">
+                  <div className=" flex bg-muted/10 flex-col p-3 text-center rounded-lg mb-2">
+                    <h3 className="scroll-m-20 text-xl font-extrabold tracking-tight lg:text-2xl mb-2">
                       Although a picture speaks a thousand words, here is a
                       description of this picture:
                     </h3>
