@@ -9,7 +9,8 @@ import "../../../../assets/PhotoPosts.css";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { BadgeCheck, Copy, Download, Share } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { checkSubscription } from "@/lib/subscription";
+// import { checkSubscription } from "@/lib/subscription";
+import { checkUserSubscription } from "@/lib/userSubscription";
 interface SinglePageProps {
   params: { postId: string };
 }
@@ -29,8 +30,11 @@ export default async function PostPage({ params }: SinglePageProps) {
       userId: post?.userId,
     },
   });
-
-  const isVerified = await checkSubscription();
+  let isVerified = false;
+  if (post?.userId) {
+    const curUserId = post.userId;
+    isVerified = await checkUserSubscription({ userId: curUserId });
+  }
 
   return (
     <Suspense fallback={<Loading />}>
