@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { Suspense } from "react";
 import Loading from "../../loading";
 import PostForm from "./components/postForm";

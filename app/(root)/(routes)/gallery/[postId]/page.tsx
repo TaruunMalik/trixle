@@ -1,6 +1,7 @@
 import React from "react";
 import prismadb from "@/lib/prismadb";
 import Image from "next/image";
+import Link from "next/link";
 import PostHeader from "./components/header";
 import PhotoPosts from "@/components/PhotoPosts";
 import { Suspense } from "react";
@@ -9,7 +10,13 @@ import "../../../../assets/PhotoPosts.css";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { BadgeCheck, Copy, Download, Share } from "lucide-react";
 import { Button } from "@/components/ui/button";
-// import { checkSubscription } from "@/lib/subscription";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 import { checkUserSubscription } from "@/lib/userSubscription";
 interface SinglePageProps {
   params: { postId: string };
@@ -61,24 +68,51 @@ export default async function PostPage({ params }: SinglePageProps) {
               <div className="  max-h-1/2 p-3">
                 <div className=" gap-10 flex flex-col pt-2 pb-2 h-3/4 sticky top-0 z-[1]">
                   <div className=" flex justify-around bg-muted/10 rounded-lg p-3">
-                    <Button
-                      variant="default"
-                      className=" bg-background text-foreground hover:bg-slate-400"
-                    >
-                      <Copy />
-                    </Button>
-                    <Button
-                      variant="default"
-                      className=" bg-background text-foreground hover:bg-slate-400"
-                    >
-                      <Share />
-                    </Button>
-                    <Button
-                      variant="default"
-                      className=" bg-background text-foreground hover:bg-slate-400"
-                    >
-                      <Download />
-                    </Button>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <Button
+                            variant="default"
+                            className=" bg-background text-foreground hover:bg-slate-400"
+                          >
+                            <Copy />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Copy Link</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <Button
+                            variant="default"
+                            className=" bg-background text-foreground hover:bg-slate-400"
+                          >
+                            <Share />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Share</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <Button
+                            variant="default"
+                            className=" bg-background text-foreground hover:bg-slate-400"
+                          >
+                            <Download />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Download</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   </div>
                   <div className=" flex justify-between p-2 items-center">
                     <div className=" flex gap-2 items-center m-3">
@@ -88,7 +122,7 @@ export default async function PostPage({ params }: SinglePageProps) {
                           {post.userName.charAt(0)}
                         </AvatarFallback>
                       </Avatar>
-                      <p className="text-[20px] font-semibold flex gap-2 items-center">
+                      <p className="text-[14px] md:text-[20px]  font-semibold flex gap-2 items-center">
                         {post.userName}
                         {isVerified && (
                           <BadgeCheck
@@ -98,9 +132,11 @@ export default async function PostPage({ params }: SinglePageProps) {
                         )}
                       </p>
                     </div>
-                    <Button className=" bg-background text-foreground hover:bg-slate-600">
-                      View Profile
-                    </Button>
+                    <Link href={`/profilePage/${post.userId}`}>
+                      <Button className=" bg-background text-[10px] md:text-[17px] text-foreground hover:bg-slate-600">
+                        View Profile
+                      </Button>
+                    </Link>
                   </div>
                   <p className=" italic font-bold text-lg text-center">{`"${post.caption}"`}</p>
                   <div className=" flex bg-muted/10 flex-col p-3 text-center rounded-lg mb-2">

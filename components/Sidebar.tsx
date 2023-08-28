@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/user-modal-subs";
 import { Bird } from "lucide-react";
+import { Heart } from "lucide-react";
 interface SidebarProps {
   isPro: boolean;
 }
@@ -40,20 +41,27 @@ export default function Sidebar({ isPro }: SidebarProps) {
     },
     {
       id: 4,
+      icon: Heart,
+      href: "/liked",
+      isprotected: false,
+      label: "Liked Posts",
+    },
+    {
+      id: 5,
       icon: Plus,
       href: "/ai/new",
       isprotected: true,
       label: "Create Bot",
     },
     {
-      id: 5,
+      id: 6,
       icon: Plus,
       href: "/post/new",
       isprotected: false,
       label: "Create Post",
     },
     {
-      id: 6,
+      id: 7,
       icon: Settings,
       href: "/settings",
       isprotected: false,
