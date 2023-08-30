@@ -14,13 +14,13 @@ export async function DELETE(
     return new NextResponse("Not a valid post id", { status: 400 });
   }
   try {
-    await prismadb.photo.delete({
+    const deletedPost = await prismadb.photo.delete({
       where: {
         id: params.postId,
         userId: user.id,
       },
     });
-    return new NextResponse("It works", { status: 200 });
+    return NextResponse.json(deletedPost);
   } catch (err) {
     return new NextResponse("Not a valid request", { status: 400 });
   }

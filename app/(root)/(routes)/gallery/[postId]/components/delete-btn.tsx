@@ -27,14 +27,16 @@ export default function DeleteBtn({ post }: DeleteBtnProps) {
   const { toast } = useToast();
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/deletePost/${post.id}`);
-      toast({
-        variant: "default",
-        title: "Deleted Successfully!",
-        description: "Successfully deleted your post!",
-      });
-      router.refresh();
-      router.back();
+      const response = await axios.delete(`/api/deletePost/${post.id}`);
+      if (response.status === 200) {
+        toast({
+          variant: "default",
+          title: "Deleted Successfully!",
+          description: "Successfully deleted your post!",
+        });
+        router.refresh();
+        router.back();
+      }
     } catch (err) {
       toast({
         variant: "destructive",
