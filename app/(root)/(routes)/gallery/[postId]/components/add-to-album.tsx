@@ -21,7 +21,7 @@ interface UserProps {
 
 interface CombinedProps extends AddToAlbumProps, UserProps {}
 
-export default async function AddToAlbum({ post, userId }: CombinedProps) {
+export default function AddToAlbum({ post, userId }: CombinedProps) {
   const router = useRouter();
   const { toast } = useToast();
   // const user = await curUser();

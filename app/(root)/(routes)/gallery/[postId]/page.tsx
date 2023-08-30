@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import PostHeader from "./components/header";
 import PhotoPosts from "@/components/PhotoPosts";
-import { Suspense } from "react";
-import Loading from "../../loading";
 import "../../../../assets/PhotoPosts.css";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { BadgeCheck, Copy, Download, Share } from "lucide-react";
