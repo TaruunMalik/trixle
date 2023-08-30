@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
+import { CheckCircle2Icon } from "lucide-react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 export default function CopyBtn() {
   const [copied, setCopied] = useState(false);
@@ -28,7 +29,7 @@ export default function CopyBtn() {
                 variant="default"
                 className="bg-background text-foreground hover:bg-slate-400"
               >
-                <Copy />
+                {!copied ? <Copy /> : <CheckCircle2Icon />}
               </Button>
             </CopyToClipboard>
           </TooltipTrigger>
