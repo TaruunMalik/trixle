@@ -39,13 +39,13 @@ export default function Sidebar({ isPro }: SidebarProps) {
       isprotected: false,
       label: "What's New",
     },
-    {
-      id: 4,
-      icon: Heart,
-      href: "/liked",
-      isprotected: false,
-      label: "Liked Posts",
-    },
+    // {
+    //   id: 4,
+    //   icon: Heart,
+    //   href: "/liked",
+    //   isprotected: false,
+    //   label: "Liked Posts",
+    // },
     {
       id: 5,
       icon: Plus,

@@ -2,7 +2,7 @@ import React from "react";
 import { Photo } from "@prisma/client";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { EditIcon } from "lucide-react";
+import { EditIcon, Heart } from "lucide-react";
 import Link from "next/link";
 import "../app/assets/PhotoPosts.css";
 import { currentUser } from "@clerk/nextjs";
@@ -23,13 +23,26 @@ export default async function PhotoPosts({ data, header }: CombinedProps) {
   return (
     <>
       <div className=" m-7">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-5">
-          {header}
-        </h1>
+        <div className=" flex justify-between items-center">
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-5">
+            {header}
+          </h1>
+          {header === "Gallery" && (
+            <div className=" flex-col flex mb-2 items-center justify-center sm:flex sm:flex-row gap-3 ">
+              <Link href={`/profilePage/${user?.id}`}>
+                <Button>View Your Profile</Button>
+              </Link>
+              <Link href="/liked">
+                <Button>
+                  <Heart fill="red" /> Liked Posts
+                </Button>
+              </Link>
+            </div>
+          )}
+        </div>
         <SearchInput />
         <div className=" posts-container">
           {data.map((item) => (
-            // <Link href={`/gallery/${item.id}`}>
             <div
               key={item.id}
               className=" group relative shadow-card  post-box"
@@ -40,12 +53,14 @@ export default async function PhotoPosts({ data, header }: CombinedProps) {
               <Button className=" p-2 w-1/5 text-foreground hover:text-background bg-red-600 rounded-xl absolute left-1 top-1 group-hover:flex cursor-pointer hidden z-[2] ">
                 Save
               </Button>
+              {/* <Link href={`/gallery/${item.id}`}> */}
               <img
                 // fill
                 alt={item.caption}
                 className=" rounded-lg object-cover post-img group-hover:opacity-50"
                 src={item.src}
               />
+              {/* </Link> */}
               <div className="group-hover:flex overflow-y-auto flex-col max-h-[94.5%] hidden absolute bottom-0 left-0 right-0 bg-[#10131f] rounded-md m-2 p-4 text-white">
                 {item.caption}
                 <div className="mt-5 flex justify-between items-center gap-2 ">
@@ -73,7 +88,6 @@ export default async function PhotoPosts({ data, header }: CombinedProps) {
                 </div>
               </div>
             </div>
-            // </Link>
           ))}
         </div>
       </div>

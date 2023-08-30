@@ -14,7 +14,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       userId: params.profileId,
     },
   });
-  const user = selectedUserPosts[0];
+  const user = selectedUserPosts[selectedUserPosts.length - 1];
   return (
     <Suspense fallback={<Loading />}>
       <div className=" h-full m-2">
@@ -33,11 +33,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             alt="Profile Image"
             className=" rounded-[50%] z-[5] mt-20"
           />
-          <h2 className="scroll-m-20 text-xl font-bold tracking-tight lg:text-2xl mt-[-5px] text-center ">
+          <h2 className="scroll-m-20 text-xl font-bold tracking-tight lg:text-2xl mt-[-5px] text-center mb-3 ">
             {user.userName}
           </h2>
         </div>
-        <Separator className=" mt-3" />
+        <Separator className=" mt-4" />
         <PhotoPosts
           data={selectedUserPosts}
           header={`All of ${user.userName}'s posts`}

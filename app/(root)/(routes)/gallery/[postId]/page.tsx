@@ -9,6 +9,7 @@ import Loading from "../../loading";
 import "../../../../assets/PhotoPosts.css";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { BadgeCheck, Copy, Download, Share } from "lucide-react";
+import { FolderPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -16,12 +17,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-
+import AddToAlbum from "./components/add-to-album";
 import { checkUserSubscription } from "@/lib/userSubscription";
+import { currentUser } from "@clerk/nextjs";
 interface SinglePageProps {
   params: { postId: string };
 }
 export default async function PostPage({ params }: SinglePageProps) {
+  const user = await currentUser();
   const post = await prismadb.photo.findUnique({
     where: {
       id: params.postId,
@@ -44,7 +47,7 @@ export default async function PostPage({ params }: SinglePageProps) {
   }
 
   return (
-    <Suspense fallback={<Loading />}>
+    <>
       {post ? (
         <>
           <div className=" flex gap-10 m-7 ">
@@ -113,7 +116,9 @@ export default async function PostPage({ params }: SinglePageProps) {
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
+                    <AddToAlbum post={post} userId={user?.id as string} />
                   </div>
+
                   <div className=" flex justify-between p-2 items-center">
                     <div className=" flex gap-2 items-center m-3">
                       <Avatar>
@@ -163,6 +168,6 @@ export default async function PostPage({ params }: SinglePageProps) {
           <Image src="/404notFound.png" alt="Empty" width={400} height={400} />
         </div>
       )}
-    </Suspense>
+    </>
   );
 }

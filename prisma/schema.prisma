@@ -32,6 +32,8 @@ model Photo {
   caption        String   @db.Text
   description    String
   userBackground String   @default("https://i.pinimg.com/236x/a1/0b/cb/a10bcbca5d203c01d1dd91f37dea0305.jpg")
+  isLiked        Boolean  @default(false)
+  likedByUserId  String   @default("")
 
   @@fulltext([caption])
 }
@@ -82,4 +84,12 @@ model UserSubscription {
   stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
   stripePriceId          String?   @unique @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime? @unique @map(name: "stripe_current_period_end")
+}
+
+model User {
+  id             String  @id
+  name           String?
+  username       String? @unique
+  userProfile    String?
+  userBackground String?
 }
