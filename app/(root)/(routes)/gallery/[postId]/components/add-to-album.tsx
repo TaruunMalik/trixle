@@ -12,7 +12,6 @@ import { Heart } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-// import curUser from "@/lib/curUser";
 interface AddToAlbumProps {
   post: Photo;
 }
