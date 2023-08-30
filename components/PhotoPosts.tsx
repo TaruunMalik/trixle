@@ -32,11 +32,11 @@ export default async function PhotoPosts({ data, header }: CombinedProps) {
               <Link href={`/profilePage/${user?.id}`}>
                 <Button>View Your Profile</Button>
               </Link>
-              {/* <Link href="/liked">
+              <Link href="/liked">
                 <Button>
                   <Heart fill="red" /> Liked Posts
                 </Button>
-              </Link> */}
+              </Link>
             </div>
           )}
         </div>

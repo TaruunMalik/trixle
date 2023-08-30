@@ -7,8 +7,9 @@ import PhotoPosts from "@/components/PhotoPosts";
 import "../../../../assets/PhotoPosts.css";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { BadgeCheck, Copy, Download, Share } from "lucide-react";
-import { FolderPlus } from "lucide-react";
+import CopyBtn from "./components/copy-btn";
 import { Button } from "@/components/ui/button";
+import DeleteBtn from "./components/delete-btn";
 import {
   Tooltip,
   TooltipContent,
@@ -67,9 +68,9 @@ export default async function PostPage({ params }: SinglePageProps) {
                 />
               </div>
               <div className="  max-h-1/2 p-3">
-                <div className=" gap-10 flex flex-col pt-2 pb-2 h-3/4 sticky top-0 z-[1]">
+                <div className=" gap-10  flex flex-col pt-2 pb-2 h-3/4 sticky top-0 z-[1]">
                   <div className=" flex justify-around bg-muted/10 rounded-lg p-3">
-                    <TooltipProvider>
+                    {/* <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
                           <Button
@@ -83,7 +84,8 @@ export default async function PostPage({ params }: SinglePageProps) {
                           <p>Copy Link</p>
                         </TooltipContent>
                       </Tooltip>
-                    </TooltipProvider>
+                    </TooltipProvider> */}
+                    <CopyBtn />
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
@@ -114,6 +116,7 @@ export default async function PostPage({ params }: SinglePageProps) {
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
+                    <DeleteBtn post={post} />
                     <AddToAlbum post={post} userId={user?.id as string} />
                   </div>
 
