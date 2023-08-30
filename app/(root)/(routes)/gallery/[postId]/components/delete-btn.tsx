@@ -41,8 +41,9 @@ export default function DeleteBtn({ post }: DeleteBtnProps) {
       toast({
         variant: "destructive",
         title: "Unsuccessful in deletion!",
-        description: "Couldn't delete your post!",
+        description: `${err}`,
       });
+      console.log(err);
     }
   };
 
