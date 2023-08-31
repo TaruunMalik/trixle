@@ -27,7 +27,10 @@ export default function DeleteBtn({ post }: DeleteBtnProps) {
   const { toast } = useToast();
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`/api/deletePost/${post.id}`);
+      // const response = await axios.delete(`/api/deletePost/${post.id}`);
+      const response = await fetch(`/api/deletePost/${post.id}`, {
+        method: "DELETE",
+      });
       if (response.status === 200) {
         toast({
           variant: "default",
