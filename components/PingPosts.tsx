@@ -62,7 +62,10 @@ export default function PostCard() {
   return (
     <div className="w-full mt-2 flex-col flex justify-center items-center">
       {dummyData.map((data) => (
-        <div className=" flex flex-col p-2 w-full mb-2 sm:w-1/2 bg-foreground/10 rounded-lg ">
+        <div
+          className=" flex flex-col p-2 w-full mb-2 sm:w-1/2 bg-foreground/10 rounded-lg "
+          key={data.id}
+        >
           <div className="flex items-center">
             <div>
               <Avatar>
