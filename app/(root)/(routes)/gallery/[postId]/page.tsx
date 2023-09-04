@@ -16,9 +16,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import DownloadBtn from "./components/download-btn";
 import AddToAlbum from "./components/add-to-album";
 import { checkUserSubscription } from "@/lib/userSubscription";
 import { currentUser } from "@clerk/nextjs";
+import ShareBtn from "./components/share-btn";
+import Env from "@/lib/env";
 interface SinglePageProps {
   params: { postId: string };
 }
@@ -70,52 +73,9 @@ export default async function PostPage({ params }: SinglePageProps) {
               <div className="  max-h-1/2 p-3">
                 <div className=" gap-10  flex flex-col pt-2 pb-2 h-3/4 sticky top-0 z-[1]">
                   <div className=" flex justify-around bg-muted/10 rounded-lg p-3">
-                    {/* <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Button
-                            variant="default"
-                            className=" bg-background text-foreground hover:bg-slate-400"
-                          >
-                            <Copy />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Copy Link</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider> */}
-                    <CopyBtn />
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Button
-                            variant="default"
-                            className=" bg-background text-foreground hover:bg-slate-400"
-                          >
-                            <Share />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Share</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Button
-                            variant="default"
-                            className=" bg-background text-foreground hover:bg-slate-400"
-                          >
-                            <Download />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Download</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                    <CopyBtn url={`${Env.APP_URL}/gallery/${post.id}`} />
+                    <ShareBtn url={`${Env.APP_URL}/gallery/${post.id}`} />
+                    <DownloadBtn url={post.src} />
                     <DeleteBtn post={post} />
                     <AddToAlbum post={post} userId={user?.id as string} />
                   </div>
