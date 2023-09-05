@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import React from "react";
 import prismadb from "@/lib/prismadb";
 import { currentUser, useUser } from "@clerk/nextjs";
 import axios from "axios";

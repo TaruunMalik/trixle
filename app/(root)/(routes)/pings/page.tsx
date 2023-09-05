@@ -40,7 +40,9 @@ export default async function Pings() {
             <PingForm isUser={isUser} />
           </div>
         ) : (
-          <div className=" w-full bg-red-500">heeyewfewf</div>
+          <div className=" w-full flex justify-center p-2 ">
+            You need to initialise your account to create posts
+          </div>
         )}
         <PingPosts />
       </div>
