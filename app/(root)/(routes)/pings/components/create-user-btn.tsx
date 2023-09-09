@@ -20,7 +20,7 @@ export default function CreateUserBtn() {
   return (
     <div>
       <Button onClick={initiateProfileHandler} className=" font-bold">
-        Initiate Profile for {user?.firstName}
+        Initiate for {user?.firstName}
       </Button>
     </div>
   );

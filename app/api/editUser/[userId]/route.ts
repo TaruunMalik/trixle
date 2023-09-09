@@ -34,9 +34,10 @@ export async function PATCH(
         id: params.userId,
       },
       data: {
-        username: username,
-        userProfile: userProfile,
-        userBackground: userBackground,
+        username: username === "" ? user.username : username,
+        userProfile: userProfile === "" ? user.userProfile : userProfile,
+        userBackground:
+          userBackground === "" ? user.userBackground : userBackground,
       },
     });
     return NextResponse.json(updatedUser);

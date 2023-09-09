@@ -1,25 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import { Edit2 } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
 import { ImageUpload } from "@/components/ImageUpload";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { SmallImageUpload } from "@/components/small-Image-Upload";
 import axios from "axios";
+import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 import {
   Form,
   FormControl,
@@ -29,20 +19,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-  SheetFooter,
-  SheetClose,
-} from "@/components/ui/sheet";
-import Link from "next/link";
+import { Users } from "@prisma/client";
 
-interface EditUserProps {
-  userId: string;
+interface EditUserProfileProps {
+  user: Users;
 }
 
 const formSchema = z.object({
@@ -51,8 +31,9 @@ const formSchema = z.object({
   userBackground: z.string().min(0),
 });
 
-export default function EditUser({ userId }: EditUserProps) {
+export default function EditUserProfile({ user }: EditUserProfileProps) {
   const { toast } = useToast();
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -67,18 +48,19 @@ export default function EditUser({ userId }: EditUserProps) {
     try {
       if (!values.username && !values.userProfile && !values.userBackground) {
         toast({
-          variant: "default",
+          variant: "destructive",
           title: "Error!",
           description: "Cannot update the user!",
         });
       } else {
-        // await axios.patch(`/api/editUser/${userId}`, values);
-        // toast({
-        //   variant: "default",
-        //   title: "Success!",
-        //   description: "Successfully updated the user!",
-        // });
-        console.log(values);
+        await axios.patch(`/api/editUser/${user.id}`, values);
+        toast({
+          variant: "default",
+          title: "Success!",
+          description: "Successfully updated the user!",
+        });
+        router.refresh();
+        router.back();
       }
     } catch (error) {
       toast({
@@ -90,83 +72,86 @@ export default function EditUser({ userId }: EditUserProps) {
   };
 
   return (
-    <div className=" absolute right-2 top-2">
-      <Link href={`/pings/editUser/${userId}`}>
-        <Button variant="outline">
-          <Edit2 />
-        </Button>
-      </Link>
-      {/* <Sheet>
-        <SheetTrigger asChild>
-        </SheetTrigger>
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-              Make changes to your profile here. Click save when you're done.
-            </SheetDescription>
-          </SheetHeader>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(updateUserHandler)}
-              className=" space-y-8 pb-4"
-            >
-              <div className=" flex flex-col text-left gap-4">
-                <FormField
-                  name="username"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem className=" col-span-2 md:col-span-1">
-                      <FormLabel>New Username</FormLabel>
-                      <FormControl>
-                        <Input
-                          disabled={isLoading}
-                          placeholder="What's your new username?"
-                          {...field}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  name="userProfile"
-                  render={({ field }) => (
-                    <FormItem className=" flex justify-between items-center ">
-                      <FormLabel>New Profile Image</FormLabel>
+    <div className=" h-fit mx-auto max-w-4xl p-4 space-y-3 bg-primary/10 shadow-lg text-foreground">
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-5">
+        Edit Your Profile, {user.name}
+      </h1>
+      <Separator className=" bg-primary/20" />
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(updateUserHandler)}
+          className=" space-y-8 pb-4"
+        >
+          <div className=" flex flex-col text-left gap-4">
+            <FormField
+              name="username"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className=" col-span-2 md:col-span-1">
+                  <FormLabel className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl mb-5">
+                    New Username
+                  </FormLabel>
 
-                      <FormControl>
-                        <SmallImageUpload
-                          disabled={isLoading}
-                          onChange={field.onChange}
-                          value={field.value}
-                        />
-                        
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  name="userBackground"
-                  render={({ field }) => (
-                    <FormItem className="flex items-center justify-between ">
-                      <FormLabel>New Background Image</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isLoading}
+                      placeholder="What's your new username?"
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <Separator className=" bg-primary/20" />
 
-                      <FormControl>
-                        <SmallImageUpload
-                          disabled={isLoading}
-                          onChange={field.onChange}
-                          value={field.value}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </form>
-          </Form>
-          <SheetFooter>
+            <FormField
+              name="userProfile"
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-4 ">
+                  <FormLabel className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl mb-5">
+                    New Profile Image
+                  </FormLabel>
+                  <FormControl>
+                    <ImageUpload
+                      disabled={isLoading}
+                      onChange={field.onChange}
+                      value={field.value}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <Separator className=" bg-primary/20" />
+
+            <FormField
+              name="userBackground"
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-4">
+                  <FormLabel className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl mb-5">
+                    New Background Image
+                  </FormLabel>
+                  <FormControl>
+                    <ImageUpload
+                      disabled={isLoading}
+                      onChange={field.onChange}
+                      value={field.value}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <Separator className=" bg-primary/20" />
+
+            <div className=" w-full flex justify-center p-2">
+              <Button variant="default" size="lg" disabled={isLoading}>
+                Save Changes
+              </Button>
+            </div>
+          </div>
+        </form>
+      </Form>
+      {/* <SheetFooter>
             <SheetClose asChild>
-              <Button type="submit">Save changes</Button>
             </SheetClose>
           </SheetFooter>
         </SheetContent>

@@ -22,7 +22,10 @@ export default function PingForm({ isUser }: PingFormProps) {
         <div>
           <Avatar>
             <AvatarFallback>{isUser.name}</AvatarFallback>
-            <AvatarImage src={isUser.userProfile as string} />
+            <AvatarImage
+              src={isUser.userProfile as string}
+              className=" object-cover aspect-square"
+            />
           </Avatar>
         </div>
         <div className="w-full">
