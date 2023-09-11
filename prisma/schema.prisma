@@ -112,14 +112,16 @@ model Comments {
 }
 
 model Post {
-  id        String   @id @default(uuid())
-  content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  image     String?
-  userId    String
-  user      Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  likes     Like[]
+  id             String   @id @default(uuid())
+  content        String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  image          String?
+  userId         String
+  username       String
+  userProfileImg String
+  user           Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  likes          Like[]
 
   comments Comments[]
 

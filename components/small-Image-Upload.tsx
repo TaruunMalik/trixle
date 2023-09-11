@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import { CldUploadButton } from "next-cloudinary";
 import { Button } from "./ui/button";
-import { Image } from "lucide-react";
+import { ImageIcon } from "lucide-react";
+import Image from "next/image";
 interface SmallImageUploadProps {
   value: string;
   onChange: (src: string) => void;
@@ -33,19 +34,29 @@ export const SmallImageUpload = ({
         uploadPreset="y6ikedgf"
         onUpload={(result: any) => onChange(result.info.secure_url)}
       >
-        <div
-          className=" 
-            hover:opacity-75 
-            transition 
-            flex 
+        {value ? (
+          <Image
+            height={50}
+            width={50}
+            alt="Uploaded Image"
+            src={value || "/placeholder.svg"}
+            className=" rounded-lg object-cover z-[-1]"
+          />
+        ) : (
+          <div
+            className=" 
+        hover:opacity-75 
+        transition 
+        flex 
             flex-col 
             items-center 
             justify-center"
-        >
-          <Button>
-            <Image />
-          </Button>
-        </div>
+          >
+            <Button>
+              <ImageIcon />
+            </Button>
+          </div>
+        )}
       </CldUploadButton>
     </div>
   );
