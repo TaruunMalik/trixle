@@ -32,7 +32,9 @@ export default async function PostCard() {
               </Avatar>
             </div>
             <div className="flex ml-2 justify-between items-start w-full">
-              <p className="font-semibold">@{data.username.toLowerCase()}</p>
+              <Link href={`/pings/${data.userId}`}>
+                <p className="font-semibold">@{data.username.toLowerCase()}</p>
+              </Link>
 
               <div className="flex">
                 <span className="mr-4 text-sm">

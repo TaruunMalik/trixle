@@ -29,7 +29,10 @@ export async function POST(req: Request) {
           image: image ? image : "",
           userId: userId,
           userProfileImg: pingUser.userProfile as string,
-          username: pingUser.name as string,
+          username:
+            pingUser.username !== ""
+              ? (pingUser.username as string)
+              : (pingUser.name as string),
         },
       });
       return NextResponse.json(newPing);
