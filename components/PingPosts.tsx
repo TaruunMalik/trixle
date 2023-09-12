@@ -41,9 +41,11 @@ export default async function PostCard() {
               </div>
             </div>
           </div>
-          <div className=" flex overflow-auto p-2 text-left bg-background rounded-md m-2">
-            <p>{data.content}</p>
-          </div>
+          <Link href={`pings/ping/${data.id}`}>
+            <div className=" flex overflow-auto p-2 text-left bg-background rounded-md m-2">
+              <p>{data.content}</p>
+            </div>
+          </Link>
           {data.image && (
             <div className=" flex overflow-auto justify-center">
               <Image src={data.image} width={400} height={200} alt="noo" />

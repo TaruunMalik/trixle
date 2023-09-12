@@ -58,6 +58,8 @@ export default function PingForm({ isUser }: PingFormProps) {
       router.refresh();
       console.log(values);
     } catch (err) {
+      console.log(err);
+
       toast({
         variant: "destructive",
         title: "Could not do it!",

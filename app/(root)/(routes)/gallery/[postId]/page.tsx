@@ -10,12 +10,6 @@ import { BadgeCheck, Copy, Download, Share } from "lucide-react";
 import CopyBtn from "./components/copy-btn";
 import { Button } from "@/components/ui/button";
 import DeleteBtn from "./components/delete-btn";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import DownloadBtn from "./components/download-btn";
 import AddToAlbum from "./components/add-to-album";
 import { checkUserSubscription } from "@/lib/userSubscription";
