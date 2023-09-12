@@ -9,11 +9,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
 import { Heart, Share } from "lucide-react";
+import { currentUser } from "@clerk/nextjs";
 import { formateDate } from "@/lib/dateCheck";
 interface UserPageProps {
   params: { userId: string };
 }
 export default async function UserPage({ params }: UserPageProps) {
+  const user = await currentUser();
   const userData = await prismadb.users.findUnique({
     where: {
       id: params.userId,
@@ -60,14 +62,16 @@ export default async function UserPage({ params }: UserPageProps) {
               <p className=" absolute xs:right-10 xs:top-10 sm:right-4 sm:bottom-4">
                 @{userData?.username}
               </p>
-              <EditUser userId={userData?.id as string} />
+              {user?.id === userData?.id && (
+                <EditUser userId={userData?.id as string} />
+              )}
             </div>
           </div>
         </div>
       </div>
 
       <div className="w-full mt-32 flex-col flex justify-center items-center">
-        <h1 className="scroll-m-20  text-left w-1/2 text-2xl font-extrabold tracking-tight lg:text-3xl mb-5">
+        <h1 className="scroll-m-20  text-left w-1/2 text-xl font-extrabold tracking-tight lg:text-3xl mb-5">
           Pings by {userData?.name}
         </h1>
         {userPings.map((data) => (
